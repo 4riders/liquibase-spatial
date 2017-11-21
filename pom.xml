@@ -4,7 +4,7 @@
 
    <groupId>com.github.lonnyj</groupId>
    <artifactId>liquibase-spatial</artifactId>
-   <version>1.2.2-SNAPSHOT</version>
+   <version>1.2.3</version>
 
    <name>Liquibase Spatial</name>
    <description>Liquibase Spatial extends Liquibase to handle spatial indexing and geometry types</description>
@@ -45,9 +45,9 @@
 
    <distributionManagement>
       <repository>
-         <id>bintray-lonny-maven-${repository.name}</id>
-         <name>lonny-maven-${repository.name}</name>
-         <url>https://api.bintray.com/maven/lonny/maven/${repository.name}</url>
+         <id>bintray-4riders-4riders</id>
+         <name>4riders-4riders</name>
+         <url>https://api.bintray.com/maven/4riders/4riders/com.github.lonnyj:liquibase-spatial/;publish=1</url>
       </repository>
    </distributionManagement>
 
@@ -78,7 +78,7 @@
       <hatbox.version>1.0.b8</hatbox.version>
       <h2.version>1.4.177</h2.version>
       <jts.version>1.13</jts.version>
-      <liquibase.version>3.3.0</liquibase.version>
+      <liquibase.version>3.5.3</liquibase.version>
    </properties>
 
    <dependencies>
@@ -99,21 +99,9 @@
          <scope>test</scope>
       </dependency>
       <dependency>
-         <groupId>net.sourceforge.hatbox</groupId>
-         <artifactId>hatbox</artifactId>
-         <version>${hatbox.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
          <version>1.10.19</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.opengeo</groupId>
-         <artifactId>geodb</artifactId>
-         <version>${geodb.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
