@@ -3,6 +3,7 @@ package liquibase.ext.spatial.datatype;
 import liquibase.database.Database;
 import liquibase.database.core.DerbyDatabase;
 import liquibase.database.core.H2Database;
+import liquibase.database.core.MySQLDatabase;
 import liquibase.database.core.OracleDatabase;
 import liquibase.database.core.PostgresDatabase;
 import liquibase.datatype.DataTypeInfo;
@@ -55,15 +56,30 @@ public class GeometryType extends LiquibaseDataType {
       final DatabaseDataType databaseDataType;
       if (database instanceof DerbyDatabase) {
          databaseDataType = new DatabaseDataType("VARCHAR(32672) FOR BIT DATA");
-      } else if (database instanceof H2Database) {
+      } 
+      else if (database instanceof H2Database) {
          // User's wanting to use a BLOB can use modifySql.
          databaseDataType = new DatabaseDataType("BINARY");
-      } else if (database instanceof OracleDatabase) {
+      } 
+      else if (database instanceof OracleDatabase) {
          databaseDataType = new DatabaseDataType("SDO_GEOMETRY");
-      } else if (database instanceof PostgresDatabase) {
+      } 
+      else if (database instanceof PostgresDatabase) {
          databaseDataType = new DatabaseDataType(getName(), getParameters());
-      } else {
-         databaseDataType = new DatabaseDataType("GEOMETRY");
+      } 
+      else if (database instanceof MySQLDatabase) {
+    	  String geoType = getGeometryType();
+    	  if ("point".equalsIgnoreCase(geoType))
+    		  databaseDataType = new DatabaseDataType("POINT");
+    	  else if ("linestring".equalsIgnoreCase(geoType))
+    		  databaseDataType = new DatabaseDataType("LINESTRING");
+    	  else if ("polygon".equalsIgnoreCase(geoType))
+    		  databaseDataType = new DatabaseDataType("POLYGON");
+    	  else
+    		  databaseDataType = new DatabaseDataType("GEOMETRY");
+      }
+      else {
+    	  databaseDataType = new DatabaseDataType("GEOMETRY");
       }
       return databaseDataType;
    }
